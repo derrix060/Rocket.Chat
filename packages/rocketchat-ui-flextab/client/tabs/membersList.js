@@ -44,15 +44,6 @@ Template.membersList.helpers({
 			users = users.filter(user => reg.test(user.username) || reg.test(user.name));
 		}
 
-		console.log('users')
-		console.log(users)
-		console.log()
-
-
-		console.log('onlineUsers')
-		console.log(onlineUsers)
-		console.log()
-
 		users = users.map(function(user) {
 			let utcOffset;
 			if (onlineUsers[user.username] != null) {

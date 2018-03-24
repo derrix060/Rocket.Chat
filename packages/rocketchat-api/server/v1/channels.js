@@ -501,22 +501,11 @@ RocketChat.API.v1.addRoute('channels.members', { authRequired: true }, {
 			skip: offset,
 			limit: count
 		});
-		console.log('L504: members')
-		console.log(members)
-		console.log()
 
-		const users = RocketChat.models.Users.find(
-			{ 
-				username: { $in: members },
-				type: { $in: ['user']}
-			}, {
+		const users = RocketChat.models.Users.find({ username: { $in: members } }, {
 			fields: { _id: 1, username: 1, name: 1, status: 1, utcOffset: 1 },
 			sort: sort ? sort : { username: 1 }
 		}).fetch();
-
-		console.log('L517: users')
-		console.log(users)
-		console.log()
 
 		return RocketChat.API.v1.success({
 			members: users,
@@ -548,10 +537,6 @@ RocketChat.API.v1.addRoute('channels.messages', { authRequired: true }, {
 			limit: count,
 			fields
 		}).fetch();
-
-		console.log('L552: messages')
-		console.log(messages)
-		console.log()
 
 		return RocketChat.API.v1.success({
 			messages,
