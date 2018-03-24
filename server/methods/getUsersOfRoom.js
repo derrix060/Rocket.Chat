@@ -30,7 +30,8 @@ Meteor.methods({
 			};
 		};
 
-		const records = RocketChat.models.Subscriptions.findByRoomId(roomId).fetch();
+		records = RocketChat.models.Subscriptions.findByRoomId(roomId).fetch();
+		records = records.filter(record => record._user.roles.includes('user'))
 
 		return {
 			total: records.length,
